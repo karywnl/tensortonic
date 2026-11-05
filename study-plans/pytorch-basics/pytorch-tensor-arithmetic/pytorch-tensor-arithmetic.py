@@ -1,20 +1,17 @@
 import torch
 
-def tensor_op(x, y, op):
+def tensor_op(x: torch.Tensor, y: torch.Tensor, op: str) -> torch.Tensor:
     """
-    Returns: list (result tensor converted via .tolist())
+    Returns the operation result as a float32 tensor.
     """
-    x = torch.tensor(x, dtype=torch.float32)
-    y = torch.tensor(y, dtype=torch.float32)
     if op == "add":
-        res = torch.add(x, y)
-    elif op == "power":
-        res = torch.pow(x, y)
-    elif op == "matmul":
-        res = torch.matmul(x, y)
+        return torch.add(x, y)
     elif op == "multiply":
-        res = torch.multiply(x, y)
-    elif op == "max":
-        res = torch.max(x, y)
-
-    return res.tolist()
+        return torch.multiply(x, y)
+    elif op == "matmul":
+        return x @ y
+    elif op == "power":
+        return x ** y
+    else:
+        return torch.maximum(x, y)
+    
